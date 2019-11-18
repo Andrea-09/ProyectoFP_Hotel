@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1574008862 source:c:\users\usuario\desktop\nueva carpeta\fp\main.cpp
+	<iostream>
+	<conio.h>
+	<fstream>
+	<stdio.h>
+	<stdlib.h>
+	<direct.h>
+
