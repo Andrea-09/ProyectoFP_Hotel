@@ -14,7 +14,7 @@ using namespace std;
 
 
 
-class hotel
+class hotel //Las class guardan las funciones bajo el nombre de una palabra clave
 {
 
 int habitacion_no;
@@ -106,7 +106,7 @@ void hotel::reservacion()
 
   system("cls");
 int r,flag;
-ofstream fout("Record.dat",ios::app);
+ofstream fout("Record.txt",ios::app); //ios::app busca algo en un archivo de texto fout solo muestra los datos
 
 cout<<"\n Ingrese los datos del cliente ";
 cout<<"\n ----------------------";
@@ -120,7 +120,7 @@ cin>>r;
 
 flag=estado(r);
 
-if(flag)
+if(flag) //flag es una variable a la que se le asigna un valor que se ejecuta una accion especifica y se le da un nuevo valor para verificar si la accion ha sido ejecutada
 cout<<"\n Lo sentimos, esa habitacion noesta disponible";
 
 else
@@ -161,7 +161,7 @@ void hotel::registro_cliente()
 
   system("cls");
 
-ifstream fin("Record.dat",ios::in);
+ifstream fin("Record.txt",ios::in); // fin permite al usuario leer el documento
 int r,flag;
 
 cout<<"\n Ingrese el numero de habitacion del cliente :- "<<endl;
@@ -192,7 +192,9 @@ if(flag==0)
 cout<<"\n Lo sentimos, esta habitacion no esxiste o no esta disponible!";
 cout<<"\n\n Pulse una tecla para continuar";
 
-getch();
+getch(); //El getch() sirve para darle una pausa a un programa en C, esa pausa dura hasta que el usuario presiona una tecla. Para poder usarla debes incluir la libreria conio.h al inicio del codigo
+
+#include <conio.h>
 fin.close();
 }
 
@@ -206,7 +208,7 @@ void hotel::habitaciones()
 
   system("cls");
 
-ifstream fin("Record.dat",ios::in);
+ifstream fin("Record.txt",ios::in); //los archivos .dat son archivos de datos en lugar de documentos que no estan destinados a ser vistos por todos
 cout<<"\n\t\t\t    Habitaciones asignadas";
 cout<<"\n\t\t\t    ----------------------";
 cout<<"\n\n Numero de Habitacion.\tNombre\t\tDireccion de correo electronico\t\t\t\tNumero de telefono\n";
@@ -275,7 +277,7 @@ int hotel::estado(int r)
 
 int flag=0;
 
-ifstream fin("Record.dat",ios::in);
+ifstream fin("Record.txt",ios::in);
 
 while(!fin.eof())
 {
@@ -305,7 +307,7 @@ void hotel::modificar(int r)
 
 long pos,flag=0;
 
-fstream file("Record.dat",ios::in|ios::out|ios::binary);
+fstream file("Record.txt",ios::in|ios::out);
 
 while(!file.eof())
 {
@@ -351,9 +353,9 @@ void hotel::del_registro(int r)
 {
 
 int flag=0;
-char ch;
-ifstream fin("Record.dat",ios::in);
-ofstream fout("temp.dat",ios::out);
+char op;
+ifstream fin("Record.txt",ios::in);
+ofstream fout("temp.txt",ios::out);
 
 while(!fin.eof())
 {
@@ -367,9 +369,9 @@ cout<<"\n Nombre: "<<nombre;
 cout<<"\n Direccion de correo electronico: "<<direccion;
 cout<<"\n Numero de telefono: "<<telefono;
 cout<<"\n\n Desea eliminar este registro (s/n): ";
-cin>>ch;
+cin>>op;
 
-if(ch=='n')
+if(op=='n')
 fout.write((char*)this,sizeof(hotel));
 flag=1;
 
@@ -389,8 +391,8 @@ cout<<"\n Lo sentimos, esta habitacion no esta disponible o no se encuentra!";
 else
 {
 
-remove("Record.dat");
-rename("temp.dat","Record.dat");
+remove("Record.txt");
+rename("temp.txt","Record.txt");
 
 }
 
@@ -407,7 +409,7 @@ void hotel::factura(int r)
 
 hotel h1;
 ifstream f1;
- f1.open("record.dat",ios::in|ios::binary);
+ f1.open("Record.txt",ios::in);
 
 if(!f1)
  cout<<"No se puede abrir";
@@ -427,10 +429,10 @@ if(!f1)
   if (h1.habitacion_no == r)
   {
 
-  if(h1.habitacion_no>=1&&h1.habitacion_no<=30)
+  if(h1.habitacion_no>=1&&h1.habitacion_no<=15)
   cout<<"Su total es de 75.00";
 
-  else if (h1.habitacion_no>=35&&h1.habitacion_no<=45)
+  else if (h1.habitacion_no>=16&&h1.habitacion_no<=30)
   cout<<"Su total es de 125.00" ;
 
   else
